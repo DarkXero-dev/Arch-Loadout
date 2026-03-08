@@ -5,6 +5,8 @@
 **A curated Fedora setup wizard for gaming, content creation, and development.**  
 Pick your loadout. Hit install. Your system is ready.
 
+ONLY PARTIALLY TESTED! USE AT OWK RISK!
+
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
 [![Fedora](https://img.shields.io/badge/Fedora-43%2B-blue?logo=fedora&logoColor=white)](https://fedoraproject.org)
 [![Qt](https://img.shields.io/badge/Qt-6-green?logo=qt&logoColor=white)](https://www.qt.io)
