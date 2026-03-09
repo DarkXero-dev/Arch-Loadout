@@ -1,9 +1,0 @@
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/arch-system-loadout.dir
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/edit_cache.dir
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/rebuild_cache.dir
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/list_install_components.dir
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/install.dir
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/install/local.dir
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/install/strip.dir
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/arch-system-loadout_autogen_timestamp_deps.dir
-/home/techxero/xwork/fedora-gui-installer/build/CMakeFiles/arch-system-loadout_autogen.dir

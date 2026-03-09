@@ -3,7 +3,7 @@
 # Usage: bash <(curl -fsSL https://raw.githubusercontent.com/USER/REPO/main/run)
 set -euo pipefail
 
-BINARY_URL="https://github.com/USER/REPO/releases/download/continuous/arch-system-loadout"
+BINARY_URL="https://github.com/DarkXero-dev/Arch-Loadout/releases/download/continuous/arch-system-loadout"
 
 tmp=$(mktemp /tmp/arch-system-loadout.XXXXXX)
 trap 'rm -f "$tmp"' EXIT
