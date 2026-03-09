@@ -1,6 +1,7 @@
 #include "mainwizard.h"
 #include "pages/welcomepage.h"
 #include "pages/chaoticaurpage.h"
+#include "pages/systemtoolspage.h"
 #include "pages/installpage.h"
 #include <pwd.h>
 #include <cstdlib>
@@ -19,9 +20,10 @@ MainWizard::MainWizard(QWidget *parent) : QWizard(parent)
     setOption(QWizard::NoBackButtonOnLastPage,  true);
     setOption(QWizard::DisabledBackButtonOnLastPage, true);
 
-    setPage(PAGE_WELCOME,    new WelcomePage(this));
-    setPage(PAGE_CHAOTICAUR, new ChaoticAURPage(this));
-    setPage(PAGE_INSTALL,    new InstallPage(this));
+    setPage(PAGE_WELCOME,      new WelcomePage(this));
+    setPage(PAGE_CHAOTICAUR,   new ChaoticAURPage(this));
+    setPage(PAGE_SYSTEMTOOLS,  new SystemToolsPage(this));
+    setPage(PAGE_INSTALL,      new InstallPage(this));
 
     setStartId(PAGE_WELCOME);
 }
@@ -110,6 +112,27 @@ QList<InstallStep> MainWizard::buildSteps() const
                      "cd /tmp && rm -rf %2 && "
                      "git clone https://aur.archlinux.org/%2.git && "
                      "cd %2 && makepkg -si --noconfirm'").arg(tu, helperBin)}};
+    }
+
+    // ---- Package Managers ----
+    if (get("systemtools/octopi"))
+        S << pacStep("octopi",   "Install Octopi",   {"octopi"});
+    if (get("systemtools/pacseek"))
+        S << pacStep("pacseek",  "Install Pacseek",  {"pacseek"});
+    if (get("systemtools/bazaar"))
+        S << pacStep("bazaar",   "Install Bazaar",   {"bazaar"});
+
+    // ---- Driver Extras ----
+    if (get("systemtools/rocm"))
+        S << pacStep("rocm", "Install AMD ROCm compute stack",
+                     {"rocm-hip-sdk", "rocm-opencl-sdk"});
+    if (get("systemtools/cuda"))
+        S << pacStep("cuda", "Install nVidia CUDA toolkit", {"cuda"});
+    if (get("systemtools/rog")) {
+        S << pacStep("rog_pkgs", "Install ASUS ROG Tools",
+                     {"rog-control-center", "asusctl", "supergfxctl"});
+        S << InstallStep{"rog_enable", "Enable ASUS daemon services",
+                         {"systemctl", "enable", "--now", "asusd", "supergfxd"}};
     }
 
     // ---- System upgrade (optional) ----

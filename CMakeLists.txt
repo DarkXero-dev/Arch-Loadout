@@ -14,8 +14,9 @@ qt_add_executable(arch-system-loadout
     ${PROJECT_SOURCE_DIR}/src/mainwizard.cpp            ${PROJECT_SOURCE_DIR}/src/mainwizard.h
     ${PROJECT_SOURCE_DIR}/src/installworker.cpp         ${PROJECT_SOURCE_DIR}/src/installworker.h
     ${PROJECT_SOURCE_DIR}/src/pages/welcomepage.cpp     ${PROJECT_SOURCE_DIR}/src/pages/welcomepage.h
-    ${PROJECT_SOURCE_DIR}/src/pages/chaoticaurpage.cpp  ${PROJECT_SOURCE_DIR}/src/pages/chaoticaurpage.h
-    ${PROJECT_SOURCE_DIR}/src/pages/installpage.cpp    ${PROJECT_SOURCE_DIR}/src/pages/installpage.h
+    ${PROJECT_SOURCE_DIR}/src/pages/chaoticaurpage.cpp    ${PROJECT_SOURCE_DIR}/src/pages/chaoticaurpage.h
+    ${PROJECT_SOURCE_DIR}/src/pages/systemtoolspage.cpp  ${PROJECT_SOURCE_DIR}/src/pages/systemtoolspage.h
+    ${PROJECT_SOURCE_DIR}/src/pages/installpage.cpp      ${PROJECT_SOURCE_DIR}/src/pages/installpage.h
 )
 
 target_link_libraries(arch-system-loadout PRIVATE Qt6::Core Qt6::Widgets Qt6::Concurrent)

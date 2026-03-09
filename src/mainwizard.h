@@ -7,6 +7,7 @@
 enum PageId {
     PAGE_WELCOME = 0,
     PAGE_CHAOTICAUR,
+    PAGE_SYSTEMTOOLS,
     PAGE_INSTALL,
 };
 
