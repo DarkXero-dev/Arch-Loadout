@@ -1,0 +1,41 @@
+name: Build & Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: archlinux:latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Bootstrap
+        run: pacman -Syu --noconfirm git cmake ninja gcc qt6-base
+
+      - uses: actions/checkout@v4
+
+      - name: Compile
+        run: cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release && cmake --build build -j$(nproc)
+
+      - name: Publish rolling release
+        run: |
+          gh release delete continuous --yes 2>/dev/null || true
+          git push --delete origin continuous   2>/dev/null || true
+          gh release create continuous \
+            --title "Latest Build" \
+            --prerelease \
+            --notes 'Run without installing anything:
+
+          ```bash
+          bash <(curl -fsSL https://raw.githubusercontent.com/${{ github.repository }}/main/run)
+          ```
+
+          Requires: Arch Linux with KDE Plasma (qt6-base ships with every KDE install).' \
+            build/arch-system-loadout
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}

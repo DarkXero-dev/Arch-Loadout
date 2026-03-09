@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+# Arch System Loadout – run without installing
+# Usage: bash <(curl -fsSL https://raw.githubusercontent.com/USER/REPO/main/run)
+set -euo pipefail
+
+BINARY_URL="https://github.com/USER/REPO/releases/download/continuous/arch-system-loadout"
+
+tmp=$(mktemp /tmp/arch-system-loadout.XXXXXX)
+trap 'rm -f "$tmp"' EXIT
+
+echo "Fetching arch-system-loadout..."
+curl -fsSL "$BINARY_URL" -o "$tmp"
+chmod +x "$tmp"
+
+"$tmp"

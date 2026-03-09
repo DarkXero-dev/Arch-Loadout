@@ -75,15 +75,8 @@ void InstallWorker::run()
             ok = true;
         }
 
-        // Treat dnf exit 7 (RPM scriptlet failure) as success-with-warning.
-        // The package is installed; the scriptlet failing is usually non-fatal
-        // (e.g. Brave's post-install desktop integration script failing in some envs).
-        if (!ok && code == 7 && program == "dnf") {
-            emit logLine(QString("WARNING: RPM scriptlet failed (exit 7) but package should be installed: %1")
-                         .arg(step.description));
-            emit logLine("WARNING: This is usually non-fatal. Verify the app works after reboot.");
-            ok = true;
-        }
+        // pacman exit 1 is a general error - already handled by ok=false
+        // yay exit 1 is also a general error
 
         if (!ok) {
             emit logLine(QString("FAILED (exit %1): %2").arg(code).arg(step.description));
